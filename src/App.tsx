@@ -1,9 +1,16 @@
-function App() {
+import Layout from "@/components/Layout/Layout";
+import Header from "@/components/Header/Header";
+import About from "@/components/About/About";
 
+function App() {
   return (
-    <>
-      <div>Hello World</div>
-    </>
+    <Layout>
+        <Header />
+        <div className="sm:mt-10">
+            <About />
+
+        </div>
+    </Layout>
   )
 }
 
