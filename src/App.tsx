@@ -3,6 +3,7 @@ import Header from "@/components/Header/Header";
 import About from "@/components/About/About";
 import Technology from "@/components/Technology/Technology";
 import Company from "@/components/Company/Company";
+import Projects from "@/components/Projects/Projects";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         </div>
         <div className="mt-28">
             <Company />
+        </div>
+        <div className="mt-28">
+            <Projects />
         </div>
     </Layout>
   )
