@@ -13,3 +13,36 @@
     src: url("public/fonts/Montserrat-Regular.ttf");
     font-weight: 400;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+.lightScroll::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.lightScroll::-webkit-scrollbar-thumb {
+    background: #CCC;
+}
+
+.lightScroll::-webkit-scrollbar-thumb:hover {
+    background: #a7a7a7;
+}
+
+.darkScroll::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+.darkScroll::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.darkScroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
