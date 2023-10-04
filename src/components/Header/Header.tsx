@@ -5,15 +5,15 @@ import TechIcon from '@/assets/icons/tech.svg?react'
 import ProjectsIcon from '@/assets/icons/projects.svg?react'
 import TelegramIcon from '@/assets/icons/telegram.svg?react'
 import {useContext} from "react";
-import {ThemeContext} from "@/App";
+import {Store} from "@/App";
 
 function Header() {
-    const { onChangeTheme } = useContext(ThemeContext);
+    const { theme: { onChangeTheme } } = useContext(Store);
 
     return (
         <div className="flex justify-between items-center py-[1rem] h-16 rounded-xl">
             <div className="flex justify-start items-center">
-                <LogoIcon className="w-14 h-14 mr-5 md:mr-16 text-[#666] hover:cursor-pointer active:bg-gray-200 rounded-full p-1.5" />
+                <LogoIcon className="w-14 h-14 mr-5 md:mr-16 dark:text-[#b5b5b5] text-[#554949] hover:cursor-pointer active:bg-gray-200 rounded-full p-1.5" />
                 <div className="flex mr-2 md:mr-5 font-bold hover:underline underline-offset-4 select-none items-center p-2 hover:cursor-pointer active:bg-gray-200 rounded">
                     <TechIcon className="w-6 h-6 md:mr-2"/>
                     <span className="hidden lg:inline">Технологии</span>

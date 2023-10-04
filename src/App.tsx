@@ -4,24 +4,43 @@ import About from "@/components/About/About";
 import Technology from "@/components/Technology/Technology";
 import Company from "@/components/Company/Company";
 import Projects from "@/components/Projects/Projects";
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
-const defaultTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'light';
 
 type ThemeType = 'light' | 'dark';
 
-type ThemeContextType = {
-    theme: ThemeType,
+type ThemeStoreType = {
+    value: ThemeType,
     onChangeTheme: () => void,
 }
 
-export const ThemeContext = createContext<ThemeContextType>({
-    theme: defaultTheme,
-    onChangeTheme: () => {}
+type LoadingStoreType = {
+    value: boolean,
+    onChangeLoading: (loading: boolean) => void,
+}
+
+type StoreType = {
+    theme: ThemeStoreType,
+    loading: LoadingStoreType
+}
+
+const defaultTheme = (localStorage.getItem('theme') as ThemeType) || 'light';
+
+
+export const Store = createContext<StoreType>({
+    theme: {
+        value: defaultTheme,
+        onChangeTheme: () => {},
+    },
+    loading: {
+        value: true,
+        onChangeLoading: () => {},
+    }
 });
 
 function App() {
     const [theme, setTheme] = useState<ThemeType>(defaultTheme);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const setThemeClass = (theme: ThemeType) => {
         const root = document.documentElement.classList;
@@ -40,18 +59,36 @@ function App() {
     }
 
     const onChangeTheme = () => {
+        setLoading(true);
         const newTheme = theme === "light" ? 'dark' : 'light';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
         setThemeClass(newTheme);
+        setTimeout(() => setLoading(false), 2000)
     }
 
     useEffect(() => {
         setThemeClass(theme);
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
     }, []);
 
   return (
-      <ThemeContext.Provider value={{theme, onChangeTheme}}>
+      <Store.Provider
+          value={
+              {
+                  theme: {
+                      value: theme,
+                      onChangeTheme
+                  },
+                  loading: {
+                      value: loading,
+                      onChangeLoading: setLoading
+                  }
+              }
+          }
+      >
           <Layout>
               <Header />
               <div className="sm:mt-10">
@@ -67,7 +104,7 @@ function App() {
                   <Projects />
               </div>
           </Layout>
-      </ThemeContext.Provider>
+      </Store.Provider>
   )
 }
 

@@ -1,10 +1,10 @@
 import artLight from '/public/image/art_light.png';
 import artDark from '/public/image/art_dark.png';
 import {useContext} from "react";
-import {ThemeContext} from "@/App";
+import {Store} from "@/App";
 
 function About() {
-    const { theme } = useContext(ThemeContext);
+    const { theme: { value } } = useContext(Store);
 
     return (
         <div className="flex flex-col">
@@ -14,7 +14,7 @@ function About() {
                     <div>Меня зовут Евгений</div>
                     <div>Я Frontend-разработчик</div>
                 </div>
-                <img src={theme === "light" ? artLight : artDark} alt="art" className="rounded-full bg-neutral-200 dark:bg-slate-900 w-96 border-solid border-8 border-[#15ccd5]"/>
+                <img src={value === "light" ? artLight : artDark} alt="art" className="rounded-full bg-neutral-200 dark:bg-slate-900 w-96 border-solid border-8 border-[#15ccd5]"/>
             </div>
         </div>
     )
