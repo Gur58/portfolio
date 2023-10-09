@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import LogoIcon from '@/assets/icons/logo.svg?react'
-import {Store} from "@/App";
+import {Store} from "@/store";
 
 
 type LayoutProps = {

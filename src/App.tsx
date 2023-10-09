@@ -4,43 +4,16 @@ import About from "@/components/About/About";
 import Technology from "@/components/Technology/Technology";
 import Company from "@/components/Company/Company";
 import Projects from "@/components/Projects/Projects";
-import {createContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import {Store, defaultTheme, ThemeType, LanguageType, defaultLanguage} from '@/store';
+import i18n from "i18next";
+import '@/i18n';
 
-
-type ThemeType = 'light' | 'dark';
-
-type ThemeStoreType = {
-    value: ThemeType,
-    onChangeTheme: () => void,
-}
-
-type LoadingStoreType = {
-    value: boolean,
-    onChangeLoading: (loading: boolean) => void,
-}
-
-type StoreType = {
-    theme: ThemeStoreType,
-    loading: LoadingStoreType
-}
-
-const defaultTheme = (localStorage.getItem('theme') as ThemeType) || 'light';
-
-
-export const Store = createContext<StoreType>({
-    theme: {
-        value: defaultTheme,
-        onChangeTheme: () => {},
-    },
-    loading: {
-        value: true,
-        onChangeLoading: () => {},
-    }
-});
 
 function App() {
     const [theme, setTheme] = useState<ThemeType>(defaultTheme);
     const [loading, setLoading] = useState<boolean>(true);
+    const [language, setLanguage] = useState<LanguageType>(defaultLanguage);
 
     const setThemeClass = (theme: ThemeType) => {
         const root = document.documentElement.classList;
@@ -67,42 +40,54 @@ function App() {
         setTimeout(() => setLoading(false), 2000)
     }
 
+    const onChangeLanguage = () => {
+        setLoading(true);
+        const newLanguage = language === "ru" ? "en" : "ru";
+        setLanguage(newLanguage)
+        localStorage.setItem('lang', newLanguage);
+        i18n.changeLanguage(newLanguage)
+        setTimeout(() => setLoading(false), 2000)
+    }
+
     useEffect(() => {
         setThemeClass(theme);
+        i18n.changeLanguage(language)
         setTimeout(() => {
             setLoading(false)
         }, 2000)
     }, []);
 
+    const storeValue = {
+        theme: {
+            value: theme,
+            onChangeTheme
+        },
+        loading: {
+            value: loading,
+            onChangeLoading: setLoading
+        },
+        language: {
+            value: language,
+            onChangeLanguage
+        }
+    }
+
   return (
-      <Store.Provider
-          value={
-              {
-                  theme: {
-                      value: theme,
-                      onChangeTheme
-                  },
-                  loading: {
-                      value: loading,
-                      onChangeLoading: setLoading
-                  }
-              }
-          }
-      >
+      <Store.Provider value={storeValue}>
           <Layout>
               <Header />
-              <div className="sm:mt-10">
+              <section className="sm:mt-10">
                   <About />
-              </div>
-              <div className="mt-28">
+              </section>
+              <section id="technology" className="mt-28">
                   <Technology />
-              </div>
-              <div className="mt-28">
+              </section>
+              <section id="company" className="mt-28">
                   <Company />
-              </div>
-              <div className="mt-28 pb-28">
+              </section>
+              <section id="projects" className="mt-28 pb-28">
                   <Projects />
-              </div>
+              </section>
           </Layout>
       </Store.Provider>
   )
