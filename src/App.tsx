@@ -4,6 +4,7 @@ import About from "@/components/About/About";
 import Technology from "@/components/Technology/Technology";
 import Company from "@/components/Company/Company";
 import Projects from "@/components/Projects/Projects";
+import Footer from "@/components/Footer/Footer";
 import {useEffect, useState} from "react";
 import {Store, defaultTheme, ThemeType, LanguageType, defaultLanguage} from '@/store';
 import i18n from "i18next";
@@ -85,8 +86,11 @@ function App() {
               <section id="company" className="mt-28">
                   <Company />
               </section>
-              <section id="projects" className="mt-28 pb-28">
+              <section id="projects" className="mt-28">
                   <Projects />
+              </section>
+              <section className="mt-10">
+                  <Footer />
               </section>
           </Layout>
       </Store.Provider>
