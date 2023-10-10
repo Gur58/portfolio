@@ -13,7 +13,9 @@ i18n
                     technology: 'Технологии',
                     projects: 'Проекты',
                     companies: 'Компании',
-                    techDescription: 'Часть технологий которые я использую в разработке'
+                    techDescription: 'Часть технологий которые я использую в разработке',
+                    companyDescription: 'Крупные компании в которых я успел поработать',
+                    projectDescription: 'Проекты в которых принимал участие'
                 }
             },
             en: {
@@ -23,8 +25,10 @@ i18n
                     iAm: 'I\'am a Frontend-developer',
                     technology: 'Technology',
                     projects: 'Projects',
-                    companies: 'Сompanies',
-                    techDescription: 'Part of the technologies I use in development'
+                    companies: 'Companies',
+                    techDescription: 'Part of the technologies I use in development',
+                    companyDescription: 'Big companies I have worked for',
+                    projectDescription: 'Projects in which I took part'
                 }
             }
         },

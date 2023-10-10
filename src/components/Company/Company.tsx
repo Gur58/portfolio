@@ -50,7 +50,8 @@ function Company() {
     const { language: { value } } = useContext(Store);
     return (
         <div className="flex items-center flex-col">
-            <div className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-10">{t('companies')}</div>
+            <h2 className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-10">{t('companies')}</h2>
+            <h3 className="text-xs text-center xsm:text-base sm:text-xl lg:text-2xl mb-10">{t('companyDescription')}</h3>
             <ol className="relative border-l-8 border-[#15ccd5] mt-10">
                 {companyList[value].map((item, index) => (
                     <li key={index} className="mb-10 ml-4">

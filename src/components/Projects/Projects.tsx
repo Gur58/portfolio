@@ -79,7 +79,8 @@ function Projects() {
 
     return (
         <div className="flex items-center flex-col">
-            <div className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-10">{t('projects')}</div>
+            <h2 className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-10">{t('projects')}</h2>
+            <h3 className="text-xs text-center xsm:text-base sm:text-xl lg:text-2xl mb-10">{t('projectDescription')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
                 {projects[value].map((item, index) => (
                     <div key={index} className="border-[#15ccd5] border-solid border-2 rounded-lg p-5 md:p-10 shadow-md">
