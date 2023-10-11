@@ -33,28 +33,39 @@ function App() {
     }
 
     const onChangeTheme = () => {
-        setLoading(true);
+        onChangeLoading(true);
         const newTheme = theme === "light" ? 'dark' : 'light';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
         setThemeClass(newTheme);
-        setTimeout(() => setLoading(false), 2000)
+        setTimeout(() => onChangeLoading(false), 2000)
     }
 
     const onChangeLanguage = () => {
-        setLoading(true);
+        onChangeLoading(true);
         const newLanguage = language === "ru" ? "en" : "ru";
         setLanguage(newLanguage)
         localStorage.setItem('lang', newLanguage);
         i18n.changeLanguage(newLanguage)
-        setTimeout(() => setLoading(false), 2000)
+        setTimeout(() => onChangeLoading(false), 2000)
     }
+
+    const onChangeLoading = (isLoading: boolean) => {
+        setLoading(isLoading)
+        const body = document.body.classList;
+        if (isLoading) {
+            body.add('overflow-hidden')
+        } else {
+            body.remove('overflow-hidden')
+        }
+    }
+
 
     useEffect(() => {
         setThemeClass(theme);
         i18n.changeLanguage(language)
         setTimeout(() => {
-            setLoading(false)
+            onChangeLoading(false)
         }, 2000)
     }, []);
 
@@ -65,7 +76,7 @@ function App() {
         },
         loading: {
             value: loading,
-            onChangeLoading: setLoading
+            onChangeLoading
         },
         language: {
             value: language,
@@ -77,21 +88,23 @@ function App() {
       <Store.Provider value={storeValue}>
           <Layout>
               <Header />
-              <section className="sm:mt-10">
-                  <About />
-              </section>
-              <section id="technology" className="mt-28">
-                  <Technology />
-              </section>
-              <section id="company" className="mt-28">
-                  <Company />
-              </section>
-              <section id="projects" className="mt-28">
-                  <Projects />
-              </section>
-              <section className="mt-10">
-                  <Footer />
-              </section>
+              <div className="px-[7px]">
+                  <section id="about" className="mb-28 sm:pt-10">
+                      <About />
+                  </section>
+                  <section id="technology" className="mt-28">
+                      <Technology />
+                  </section>
+                  <section id="company" className="mt-28">
+                      <Company />
+                  </section>
+                  <section id="projects" className="mb-10">
+                      <Projects />
+                  </section>
+                  <section>
+                      <Footer />
+                  </section>
+              </div>
           </Layout>
       </Store.Provider>
   )
