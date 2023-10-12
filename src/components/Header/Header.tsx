@@ -21,9 +21,9 @@ function Header() {
     const ThemeIcon = theme === 'light' ? SunIcon : MoonIcon;
 
     return (
-        <div className="sticky top-0 flex justify-between items-center py-[1rem] h-16 z-10 bg-white dark:bg-slate-950">
-            <div className="flex justify-start items-center">
-                <button type="button" onClick={onClick('about')} className="mr-5 md:mr-16 hover:cursor-pointer active:bg-gray-200 rounded-full p-1.5">
+        <header className="sticky top-0 flex justify-between items-center py-[1rem] h-16 z-10 bg-white dark:bg-slate-950">
+            <nav className="flex justify-start items-center">
+                <button type="button" onClick={onClick('about')} className="mr-2 xsm:mr-5 md:mr-16 hover:cursor-pointer active:bg-gray-200 rounded-full p-1.5">
                     <LogoIcon className="w-10 h-10 dark:text-[#b5b5b5] text-[#554949]" />
                 </button>
                 <button type="button" onClick={onClick('technology')} className="flex mr-2 md:mr-5 font-bold hover:underline underline-offset-4 select-none items-center p-2 hover:cursor-pointer active:bg-gray-200 rounded">
@@ -38,7 +38,7 @@ function Header() {
                     <ProjectsIcon className="w-6 h-6 lg:mr-2"/>
                     <span className="hidden lg:inline">{t('projects')}</span>
                 </button>
-            </div>
+            </nav>
             <div className="flex">
                 <button type="button">
                     <ThemeIcon
@@ -54,7 +54,7 @@ function Header() {
                     />
                 </button>
             </div>
-        </div>
+        </header>
     )
 }
 

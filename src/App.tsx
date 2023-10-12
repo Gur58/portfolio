@@ -88,22 +88,20 @@ function App() {
       <Store.Provider value={storeValue}>
           <Layout>
               <Header />
-              <div className="px-[7px]">
-                  <section id="about" className="mb-28 sm:pt-10">
+              <div className="px-[7px] sm:pb-10">
+                  <div className="mb-14 xsm:mb-28">
                       <About />
-                  </section>
-                  <section id="technology" className="mt-28">
+                  </div>
+                  <div className="mb-14 xsm:mb-28">
                       <Technology />
-                  </section>
-                  <section id="company" className="mt-28">
+                  </div>
+                  <div className="mb-14 xsm:mb-28">
                       <Company />
-                  </section>
-                  <section id="projects" className="mb-10">
+                  </div>
+                  <div className="mb-10">
                       <Projects />
-                  </section>
-                  <section>
+                  </div>
                       <Footer />
-                  </section>
               </div>
           </Layout>
       </Store.Provider>

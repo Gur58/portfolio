@@ -22,7 +22,7 @@ i18n
                 translation: {
                     hello: 'Hello',
                     myName: 'My name is Evgenii',
-                    iAm: 'I\'am a Frontend-developer',
+                    iAm: 'I\'am a Frontend developer',
                     technology: 'Technology',
                     projects: 'Projects',
                     companies: 'Companies',

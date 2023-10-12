@@ -15,10 +15,10 @@ import {useTranslation} from "react-i18next";
 function Technology () {
     const { t } = useTranslation();
     return (
-        <div className="flex flex-col items-center">
-            <h2 className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-5">{t('technology')}</h2>
-            <h3 className="text-xs text-center xsm:text-base sm:text-xl lg:text-2xl mb-10">{t('techDescription')}</h3>
-            <div className="w-full grid items-center justify-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mt-10 [&>*]:w-28">
+        <section id="technology" className="flex flex-col items-center">
+            <h2 className="font-montserrat-black text-lg text-gray-700 dark:text-[#CCCCCC] xsm:text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-5">{t('technology')}</h2>
+            <h3 className="text-xs text-center xsm:text-base sm:text-xl lg:text-2xl mb-5 sm:mb-10">{t('techDescription')}</h3>
+            <div className="w-full grid items-center justify-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 [&>*]:w-28">
                 <img className="hover:scale-125 transition-transform duration-200" src={htmlLogo} alt="html"/>
                 <img className="hover:scale-125 transition-transform duration-200" src={cssLogo} alt="css"/>
                 <img className="hover:scale-125 transition-transform duration-200" src={jsLogo} alt="js"/>
@@ -32,7 +32,7 @@ function Technology () {
                 <img className="hover:scale-125 transition-transform duration-200" src={jestLogo} alt="jest"/>
                 <img className="hover:scale-125 transition-transform duration-200" src={webpackLogo} alt="webpack"/>
             </div>
-        </div>
+        </section>
     )
 }
 
