@@ -10,8 +10,10 @@ import {Store, defaultTheme, ThemeType, LanguageType, defaultLanguage} from '@/s
 import i18n from "i18next";
 import '@/i18n';
 
+const MIN_LOAD_TIME = 2000;
 
 function App() {
+    const [loadStartTime, setLoadStartTime] = useState<number>(Date.now());
     const [theme, setTheme] = useState<ThemeType>(defaultTheme);
     const [loading, setLoading] = useState<boolean>(true);
     const [language, setLanguage] = useState<LanguageType>(defaultLanguage);
@@ -38,7 +40,7 @@ function App() {
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
         setThemeClass(newTheme);
-        setTimeout(() => onChangeLoading(false), 2000)
+        setTimeout(() => onChangeLoading(false), MIN_LOAD_TIME)
     }
 
     const onChangeLanguage = () => {
@@ -47,35 +49,37 @@ function App() {
         setLanguage(newLanguage)
         localStorage.setItem('lang', newLanguage);
         i18n.changeLanguage(newLanguage)
-        setTimeout(() => onChangeLoading(false), 2000)
+        setTimeout(() => onChangeLoading(false), MIN_LOAD_TIME)
     }
 
     const onChangeLoading = (isLoading: boolean) => {
         setLoading(isLoading)
         const body = document.body.classList;
         if (isLoading) {
+            setLoadStartTime(Date.now())
             body.add('overflow-hidden')
         } else {
             body.remove('overflow-hidden')
         }
     }
 
+    const handleLoadResource = () => {
+        const durationLoad = Date.now() - loadStartTime;
+        const diffLoad = MIN_LOAD_TIME - durationLoad;
+        if (diffLoad) {
+            setTimeout(() => {
+                onChangeLoading(false)
+            }, diffLoad)
+        } else {
+            onChangeLoading(false)
+        }
+    }
+
 
     useEffect(() => {
+        onChangeLoading(true)
         setThemeClass(theme);
         i18n.changeLanguage(language)
-        const startLoadTime = Date.now();
-        window.addEventListener('load', () => {
-            const durationLoad = Date.now() - startLoadTime;
-            const difference = 2000 - durationLoad;
-            if (difference <= 0) {
-                onChangeLoading(false)
-            } else {
-                setTimeout(() => {
-                    onChangeLoading(false)
-                }, difference);
-            }
-        })
     }, []);
 
     const storeValue = {
@@ -94,26 +98,29 @@ function App() {
     }
 
   return (
-      <Store.Provider value={storeValue}>
-          <Layout>
-              <Header />
-              <main className="px-[7px]">
-                  <div className="mb-14 xsm:mb-28">
-                      <About />
-                  </div>
-                  <div className="mb-14 xsm:mb-28">
-                      <Technology />
-                  </div>
-                  <div className="mb-14 xsm:mb-28">
-                      <Company />
-                  </div>
-                  <div className="mb-10">
-                      <Projects />
-                  </div>
-              </main>
-              <Footer />
-          </Layout>
-      </Store.Provider>
+      <div onLoad={handleLoadResource}>
+          <Store.Provider value={storeValue}>
+              <Layout>
+                  <Header />
+                  <main className="px-[7px]">
+                      <div className="mb-14 xsm:mb-28">
+                          <About />
+                      </div>
+                      <div className="mb-14 xsm:mb-28">
+                          <Technology />
+                      </div>
+                      <div className="mb-14 xsm:mb-28">
+                          <Company />
+                      </div>
+                      <div className="mb-10">
+                          <Projects />
+                      </div>
+                  </main>
+                  <Footer />
+              </Layout>
+          </Store.Provider>
+      </div>
+
   )
 }
 
