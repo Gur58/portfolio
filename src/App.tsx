@@ -88,7 +88,7 @@ function App() {
       <Store.Provider value={storeValue}>
           <Layout>
               <Header />
-              <div className="px-[7px] sm:pb-10">
+              <main className="px-[7px]">
                   <div className="mb-14 xsm:mb-28">
                       <About />
                   </div>
@@ -101,8 +101,8 @@ function App() {
                   <div className="mb-10">
                       <Projects />
                   </div>
-                      <Footer />
-              </div>
+              </main>
+              <Footer />
           </Layout>
       </Store.Provider>
   )
