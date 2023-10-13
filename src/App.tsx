@@ -64,9 +64,18 @@ function App() {
     useEffect(() => {
         setThemeClass(theme);
         i18n.changeLanguage(language)
-        setTimeout(() => {
-            onChangeLoading(false)
-        }, 2000)
+        const startLoadTime = Date.now();
+        window.addEventListener('load', () => {
+            const durationLoad = Date.now() - startLoadTime;
+            const difference = 2000 - durationLoad;
+            if (difference <= 0) {
+                onChangeLoading(false)
+            } else {
+                setTimeout(() => {
+                    onChangeLoading(false)
+                }, difference);
+            }
+        })
     }, []);
 
     const storeValue = {
