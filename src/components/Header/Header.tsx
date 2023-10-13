@@ -14,7 +14,9 @@ function Header() {
     const { theme: { onChangeTheme, value:theme }, language: { value:language, onChangeLanguage } } = useContext(Store);
 
     const onClick = (id: string) => () => {
-        const y =  document.getElementById(id).getBoundingClientRect().top + window.scrollY;
+        const element = document.getElementById(id);
+        if (!element) return;
+        const y =  element.getBoundingClientRect().top + window.scrollY;
         window.scroll({ top: y - 64, behavior: "smooth" })
     }
 
