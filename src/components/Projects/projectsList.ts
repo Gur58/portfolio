@@ -1,4 +1,13 @@
-export const projectList = {
+import {LangType} from "@/i18n";
+
+type ProjectsType = {
+    name: string,
+    stack: string[],
+
+}
+type ProjectsListType = Record<LangType, Array<ProjectsType>>
+
+export const projectList: ProjectsListType = {
     ru: [
         {
             name: 'Система по обучению и инструктажу для сотрудников компании',

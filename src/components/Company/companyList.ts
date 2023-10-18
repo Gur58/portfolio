@@ -1,4 +1,15 @@
-export const companyList = {
+import {LangType} from "@/i18n";
+
+type CompanyType = {
+    name: string,
+    position: string,
+    description: string,
+    start: string,
+
+}
+type CompanyListType = Record<LangType, Array<CompanyType>>
+
+export const companyList: CompanyListType = {
     ru: [
         {
             name: 'ППО ЭВТ ИМ. В.А.РЕВУНОВА',
