@@ -10,7 +10,7 @@ type ProjectsListType = Record<LangType, Array<ProjectsType>>
 export const projectList: ProjectsListType = {
     ru: [
         {
-            name: 'Система по обучению и инструктажу для сотрудников компании',
+            name: 'Корпоративный портал по обучению и инструктажу для сотрудников компании',
             stack: ['JS', 'JQuery', 'SharePoint']
         },
         {
@@ -44,7 +44,7 @@ export const projectList: ProjectsListType = {
     ],
     en: [
         {
-            name: 'Training and instruction system for company employees',
+            name: 'Corporate portal for training and instruction for company employees',
             stack: ['JS', 'JQuery', 'SharePoint']
         },
         {
